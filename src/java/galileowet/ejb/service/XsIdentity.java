@@ -1,5 +1,5 @@
 /*
- * WsIdentity.java
+ * XsIdentity.java
  *
  * Created on August 27, 2007, 3:26 PM
  *

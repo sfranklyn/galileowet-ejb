@@ -1,5 +1,5 @@
 /*
- * WsFilter.java
+ * XsFilter.java
  *
  * Created on August 27, 2007, 3:32 PM
  *

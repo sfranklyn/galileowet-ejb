@@ -11,10 +11,7 @@ import galileowet.ejb.dao.UsersRolesDaoRemote;
 import galileowet.jpa.Pccs;
 import galileowet.jpa.Users;
 import galileowet.jpa.UsersRoles;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -64,6 +61,10 @@ public class UsersServiceBean implements UsersServiceRemote {
         if (!appServiceRemote.hashPassword(userPassword).equals(users.getUserPassword())) {
             errorList.add(messageSource.getString("user_password_not_match"));
         }
+        if(errorList.isEmpty()) {
+            users.setUserLastLogin(new Date());
+            usersDaoRemote.update(users);
+        }        
         return errorList;
     }
 

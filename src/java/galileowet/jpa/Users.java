@@ -8,20 +8,8 @@ package galileowet.jpa;
 
 import java.io.Serializable;
 import java.util.Collection;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import java.util.Date;
+import javax.persistence.*;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
@@ -97,6 +85,10 @@ public class Users implements Serializable {
     @Basic(optional = false)
     @Column(name = "user_version", nullable = false)
     private int userVersion;
+    @Basic(optional = false)
+    @Column(name = "user_last_login", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date userLastLogin;
     @JoinColumn(name = "pcc_id", referencedColumnName = "pcc_id", nullable = false)
     @ManyToOne(optional = false)
     private Pccs pccId;
@@ -310,6 +302,14 @@ public class Users implements Serializable {
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
+    public Date getUserLastLogin() {
+        return userLastLogin;
+    }
+
+    public void setUserLastLogin(Date userLastLogin) {
+        this.userLastLogin = userLastLogin;
     }
 
 }
